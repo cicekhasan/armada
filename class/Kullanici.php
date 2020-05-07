@@ -11,7 +11,6 @@
 		}
 
 		public function olustur($alanlar=array()) {
-			print_r($alanlar);
 			if (!$this->_db->ekle('uyeler', $alanlar)) {
 				throw new Exception('Hesap oluşturulamadı!');				
 			}

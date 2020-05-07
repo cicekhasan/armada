@@ -72,13 +72,6 @@
 		}
 
 		public function ekle($tablo, $alanlar = array()) {
-			if (isset($tablo) && isset($alanlar)) {
-				echo $tablo."<br />";
-				print_r($alanlar);
-			}
-		}
-		/*
-		public function ekle($tablo, $alanlar = array()) {
 			$anahtar = array_keys($alanlar);
 			$degerler = '';
 			$x = 1;
@@ -96,7 +89,7 @@
 			}
 			return false;
 		}
-*/
+
 		public function guncelle($tablo, $id, $alanlar) {
 			$set = '';
 			$x = 1;

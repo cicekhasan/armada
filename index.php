@@ -5,5 +5,5 @@
 		echo Session::flash('basari');
 	}
 
-	echo Session::getir(Config::getir('session/session_ismi'));
+	//echo Session::getir(Config::getir('session/session_ismi'));
 ?>
