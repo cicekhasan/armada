@@ -6,4 +6,5 @@
 	}
 
 	//echo Session::getir(Config::getir('session/session_ismi'));
+	//1 $kullanici = new Kullanici();
 ?>

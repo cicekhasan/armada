@@ -3,11 +3,19 @@
 
 		private $_db,
 			      $_veri,
-			      $_sessionIsmi;
+			      $_sessionIsmi,
+			      $_girisYapti;
 
-		public function __construct(){
+		public function __construct($kullanici = null){
 			$this->_db = DB::baglan();
 			$this->_sessionIsmi = Config::getir('session/session_ismi');
+
+			if (!$kullanici) {
+				if (Session::varsa($this->_sessionIsmi)) {
+					$kullanici = Session::getir($this->_sessionIsmi);
+					//1 echo $kullanici;
+				}
+			}
 		}
 
 		public function olustur($alanlar=array()) {
@@ -42,6 +50,15 @@
 
 		public function veri() {
 			return $this->_veri;
+		}
+
+		public function varsa() {
+			return (!empty($this->_veri)) ? true : false;
+		}
+
+
+		public function girisYapti() {
+			return $this->_girisYapti;
 		}
 
 	}
