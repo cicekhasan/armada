@@ -4,4 +4,6 @@
 	if (Session::varsa('basari')) {
 		echo Session::flash('basari');
 	}
+
+	echo Session::getir(Config::getir('session/session_ismi'));
 ?>

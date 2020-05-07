@@ -2,13 +2,16 @@
 	class Kullanici{
 
 		private $_db,
-			      $_veri;
+			      $_veri,
+			      $_sessionIsmi;
 
 		public function __construct(){
 			$this->_db = DB::baglan();
+			$this->_sessionIsmi = Config::getir('session/session_ismi');
 		}
 
 		public function olustur($alanlar=array()) {
+			print_r($alanlar);
 			if (!$this->_db->ekle('uyeler', $alanlar)) {
 				throw new Exception('Hesap oluşturulamadı!');				
 			}
@@ -30,7 +33,9 @@
 			$kullanici = $this->bul($kullanici_adi);
 			if ($kullanici) {
 				if ($this->veri()->parola === Hash::yap($sifre, $this->veri()->salt)) {
-					# code...
+					// echo 'Tamam';
+					Session::yerlestir($this->_sessionIsmi, $this->veri()->id);
+					return true;
 				}
 			}
 			return false;
