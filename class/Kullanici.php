@@ -14,6 +14,11 @@
 				if (Session::varsa($this->_sessionIsmi)) {
 					$kullanici = Session::getir($this->_sessionIsmi);
 					//1 echo $kullanici;
+					if ($this->bul($kullanici)) {
+						$this->_girisYapti = true;
+					}else{
+						//çıkış burada olacak.
+					}
 				}
 			}
 		}
