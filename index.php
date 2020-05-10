@@ -38,7 +38,10 @@ if (Session::varsa('basari')) {
     </ul> 
   </small>  
   <p>
-   <?php    echo "MERHABA ANASAYFA <br />"; ?>
+   <?php
+    echo "MERHABA ANASAYFA <br />"; 
+
+   ?>
  </p>
 </body>
 </html>

@@ -71,7 +71,7 @@
 			return $this->eylem('SELECT * ', $tablo, $where);
 		}
 
-		public function ekle($tablo, $alanlar = array()) {
+		public function ekle($tablo, $alanlar=array()) {
 			$anahtar = array_keys($alanlar);
 			$degerler = '';
 			$x = 1;
