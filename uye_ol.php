@@ -1,66 +1,64 @@
 <?php
 require_once 'core/init.php';
 
-  if (Input::varsa()) {
-    if (Token::kontrol(Input::getir('token'))) {
+if (Input::varsa()) {
+  if (Token::kontrol(Input::getir('token'))) {
 
-      $onaylama = new Onaylama();
-      $onaylama = $onaylama->kontrol($_POST, array(
-        'kullanici_adi' => array(
-          'zorunlu'   => true,
-          'min'       => 3,
-          'max'       => 20,
-          'benzersiz' => 'uyeler'
-        ),
-        'parola' => array(
-          'zorunlu' => true,
-          'min'     => 6
-        ),
-        'parola_tekrar' => array(
-          'zorunlu' => true,
-          'eslesme' => 'parola'
-        ),
-        'isim' => array(
-          'zorunlu' => true,
-          'min'     => 3,
-          'max'     => 50
-        )
+    $onaylama = new Onaylama();
+    $onaylama = $onaylama->kontrol($_POST, array(
+      'kullanici_adi' => array(
+        'zorunlu'   => true,
+        'min'       => 3,
+        'max'       => 20,
+        'benzersiz' => 'uyeler'
+      ),
+      'parola' => array(
+        'zorunlu' => true,
+        'min'     => 6
+      ),
+      'parola_tekrar' => array(
+        'zorunlu' => true,
+        'eslesme' => 'parola'
+      ),
+      'isim' => array(
+        'zorunlu' => true,
+        'min'     => 3,
+        'max'     => 50
+      )
+    ));
+
+    if ($onaylama->tamam()) {
+      echo "Onaylandı!";
+      $kullanici = new Kullanici();
+      $kullanici_adi = Input::getir('kullanici_adi');
+      $salt          = Hash::salt(32);
+      $salt          = bin2hex($salt);
+      $parola        = Hash::yap(Input::getir('parola'), $salt);
+      $isim          = Input::getir('isim');
+      $tarih         = date('g-m-Y H:i:s');
+      $parola        = Hash::yap(Input::getir('parola'), $salt);
+
+      $kullanici->olustur(array(
+        'kullanici_adi' => Input::getir('kullanici_adi'),
+        'parola'        => Hash::yap(Input::getir('parola'), $salt),
+        'salt'          => $salt,
+        'isim'          => Input::getir('isim'),
+        'uyelik_tarihi' => $tarih,
+        'grup'          => '1'   
       ));
 
-      if ($onaylama->tamam()) {
-        echo "Onaylandı!";
-        $kullanici = new Kullanici();
-        $salt   = Hash::salt(32);
-        $salt   = bin2hex($salt);
-        $tarih  = date('g-m-Y H:i:s');
-        $parola = Hash::yap(Input::getir('parola'), $salt);
+      Session::flash('basari', 'Başarılı bir şekilde üye oldunuz!');
+        //header('Location: index.php');
+      Yonlendir::yon('index.php');
 
-        try{
-          $kullanici->olustur(array(
-            'kullanici_adi' => Input::getir('kullanici_adi'),
-            'parola'        => Hash::yap(Input::getir('parola'), $salt),
-            'salt'          => "{$salt}",
-            'isim'          => Input::getir('isim'),
-            'uyelik_tarihi' => "{$tarih}",
-            'grup'          => '1'   
-          ));
 
-        Session::flash('basari', 'Başarılı bir şekilde üye oldunuz!');
-        header('Location: index.php');
-        //Yonlendir::yon('index.php');
-
-       }catch(Exception $e){
-        echo "Hata: ".$e->getMessage();
-       }
-
-      }else{
-        foreach ($onaylama->hatalar() as $hata) {
-          echo $hata, '<br />';
-        }
+    }else{
+      foreach ($onaylama->hatalar() as $hata) {
+        echo $hata, '<br />';
       }
     }
   }
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +101,6 @@ require_once 'core/init.php';
     <input type="hidden" name="token" value="<?php echo Token::olustur(); ?>">
     <input type="text" name="isim" id="isim" value="<?php echo filtrele(Input::getir('isim')); ?>">
   </div>
-
   <input type="submit" value="Üye Ol">
 </form>
 </body>
