@@ -50,7 +50,7 @@ require_once 'core/init.php';
         //Yonlendir::yon('index.php');
 
        }catch(Exception $e){
-        die($e->getMessage());
+        echo "Hata: ".$e->getMessage();
        }
 
       }else{
@@ -85,7 +85,7 @@ require_once 'core/init.php';
   </ul> 
 </small>   
 <p> <?php    echo "ÜYE OL SAYFASI <br />"; ?> </p>
-<form action="" method="POST">
+<form action="" method="post">
   <div class="alan">
     <label for="kullanici_adi">Kullanıcı Adı</label>
     <input type="text" name="kullanici_adi" id="kullanici_adi" value="<?php echo filtrele(Input::getir('kullanici_adi')); ?>" autocomplate="off">
