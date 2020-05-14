@@ -1,14 +1,15 @@
 <?php
 	class Kullanici{
 
-		private $_db,
-			      $_veri,
+		private $_db;
+		private $_veri,
 			      $_sessionIsmi,
 			      $_girisYapti;
 
-		public function __construct($kullanici = null){
+		//public function __construct($kullanici = null){
+		public function __construct(){
 			$this->_db = DB::baglan();
-			$this->_sessionIsmi = Config::getir('session/session_ismi');
+			/*$this->_sessionIsmi = Config::getir('session/session_ismi');
 
 			if (!$kullanici) {
 				if (Session::varsa($this->_sessionIsmi)) {
@@ -20,10 +21,11 @@
 						//çıkış burada olacak.
 					}
 				}
-			}
+			}*/
 		}
 
-		public function olustur($alanlar=array()) {
+		public function olustur($alanlar = array()) {
+			 exit('<pre>'.print_r($alanlar,1).'</pre>');
 			if (!$this->_db->ekle('uyeler', $alanlar)) {
 				throw new Exception('Hesap oluşturulamadı!');				
 			}
@@ -67,4 +69,3 @@
 		}
 
 	}
-?>

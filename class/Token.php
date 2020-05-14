@@ -2,7 +2,7 @@
 	// Token (CSRF (Cross Site Request Forgery (Siteler Arası İstek Sahtekârlığı)) kontrolu.)
 	class Token{
 
-		public static function tokenOlustur(){
+		public static function olustur(){
 			return Session::yerlestir(Config::getir('session/token_ismi'), md5(uniqid()));
 		}
 

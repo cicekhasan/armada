@@ -1,6 +1,5 @@
 <?php
 	class Config{
-
 		public static function getir($yol=null){
 			if ($yol) {
 				$config = $GLOBALS['config'];
