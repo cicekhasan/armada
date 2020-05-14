@@ -28,25 +28,21 @@ require_once 'core/init.php';
       ));
 
       if ($onaylama->tamam()) {
-
+        echo "Onaylandı!";
         $kullanici = new Kullanici();
-        $salt = Hash::salt(32);
-        //$salt   = bin2hex($salt);
-        //$tarih  = date('g-m-Y H:i:s');
-        //$parola = Hash::yap(Input::getir('parola'), $salt);
-        $bilgiler = array(
-            'kullanici_adi' => Input::getir('kullanici_adi'),
-            'parola'        => Hash::yap(Input::getir('parola'), $salt),
-            'salt'          => $salt,
-            'isim'          => Input::getir('isim'),
-            'uyelik_tarihi' => date('g-m-Y H:i:s'),
-            'grup'          => '1'        
-          );
+        $salt   = Hash::salt(32);
+        $salt   = bin2hex($salt);
+        $tarih  = date('g-m-Y H:i:s');
+        $parola = Hash::yap(Input::getir('parola'), $salt);
+
         try{
           $kullanici->olustur(array(
-            "kullanici_adi" => Input::getir('kullanici_adi'),
-            'uyelik_tarihi' => date('g-m-Y H:i:s'),
-            'grup'          => '1'
+            'kullanici_adi' => Input::getir('kullanici_adi'),
+            'parola'        => Hash::yap(Input::getir('parola'), $salt),
+            'salt'          => "{$salt}",
+            'isim'          => Input::getir('isim'),
+            'uyelik_tarihi' => "{$tarih}",
+            'grup'          => '1'   
           ));
 
         Session::flash('basari', 'Başarılı bir şekilde üye oldunuz!');
