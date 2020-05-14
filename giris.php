@@ -6,7 +6,7 @@ if (Input::varsa()) {
 		$onaylama = new Onaylama();
 		$onaylama = $onaylama->kontrol($_POST, array(
 			'kullanici_adi' => array('zorunlu' => true),
-			'parola' => array('zorunlu' => true)
+			'parola'        => array('zorunlu' => true)
 		));
 		if ($onaylama->tamam()) {
 			$kullanici = new Kullanici();
@@ -26,16 +26,9 @@ if (Input::varsa()) {
 	<meta charset="UTF-8">
 	<title>Giriş</title>
   <style type="text/css" media="screen">
-     ul {
-        list-style: none outside none;
-    }
-
-    li {
-        position: relative;
-        display: inline;
-        margin: 10px;
-    }
-</style>
+    ul { list-style: none outside none; }
+    li { position: relative; display: inline; margin: 10px; }
+  </style>
 </head>
 <body>
   <small>
@@ -46,26 +39,26 @@ if (Input::varsa()) {
       <li><a href="sifre_degistir.php">Şifre Değiştir</a></li>
       <li><a href="giris.php">Giriş</a></li>
       <li><a href="cikis.php">Çıkış</a></li>
-  </ul> 
-</small>  
-<p>
-  <?php    echo "GİRİŞ SAYFASI <br />"; ?>
-</p>
-<form action="" method="POST">
-  <div class="alan">
+    </ul> 
+  </small>  
+  <p>
+    <?php echo "GİRİŞ SAYFASI <br />"; ?>
+  </p>
+  <form action="" method="POST">
+    <div class="alan">
      <label for="kullanici_adi">Kullanıcı Adı:</label>
      <input type="text" name="kullanici_adi" id="kullanici_adi" autocomplate="off">
- </div>
- <div class="alan">
+   </div>
+   <div class="alan">
      <label for="parola">Parola:</label>
      <input type="password" name="parola" id="parola" autocomplate="off">
- </div>
+   </div>
 		<!--
 		<div class="alan">
 			<label for="hatirla">Beni Hatırla:</label>
 			<input type="checkbox" name="hatirla" id="hatirla" autocomplate="off">
 		</div>
-	-->
+	  -->
 	<input type="hidden" name="token" value="<?php echo Token::tokenOlustur(); ?>">
 	<input type="submit" value="Giriş Yap">
 </form>

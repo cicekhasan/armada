@@ -5,23 +5,15 @@ if (Session::varsa('basari')) {
   echo Session::flash('basari');
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <title>PDO</title>
   <style type="text/css" media="screen">
-   ul {
-    list-style: none outside none;
-  }
-
-  li {
-    position: relative;
-    display: inline;
-    margin: 10px;
-  }
-</style>
+    ul { list-style: none outside none; }
+    li { position: relative; display: inline; margin: 10px; }
+  </style>
 </head>
 <body>
   <small>
@@ -35,11 +27,9 @@ if (Session::varsa('basari')) {
     </ul> 
   </small>  
   <p>
-   <?php
+    <?php
     echo "MERHABA ANASAYFA <br />"; 
-
-
-   ?>
- </p>
+    ?>
+  </p>
 </body>
 </html>

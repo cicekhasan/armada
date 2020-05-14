@@ -1,6 +1,6 @@
 <?php
-class Input{
-	public static function varsa($tur = 'post'){
+class Input {
+	public static function varsa($tur = 'post') {
 		switch ($tur) {
 			case 'post':
 			return (!empty($_POST)) ? true : false;
@@ -16,7 +16,7 @@ class Input{
 		}
 	}
 
-	public static function getir($alan){
+	public static function getir($alan) {
 		if (isset($_POST[$alan])) {
 			return $_POST[$alan];
 		}else if (isset($_GET[$alan])) {

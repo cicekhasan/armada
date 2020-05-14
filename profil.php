@@ -4,16 +4,9 @@
   <meta charset="UTF-8">
   <title>PDO</title>
   <style type="text/css" media="screen">
-   ul {
-    list-style: none outside none;
-  }
-
-  li {
-    position: relative;
-    display: inline;
-    margin: 10px;
-  }
-</style>
+    ul { list-style: none outside none; }
+    li { position: relative; display: inline; margin: 10px; }
+  </style>
 </head>
 <body>
   <small>
@@ -27,7 +20,7 @@
     </ul> 
   </small>   
   <p>
-   <?php    echo "PROFİL SAYFASI <br />"; ?>
+   <?php echo "PROFİL SAYFASI <br />"; ?>
  </p>
 </body>
 </html>

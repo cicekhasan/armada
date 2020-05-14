@@ -2,9 +2,9 @@
 class Kullanici{
 
 	private $_db;
-	private $_veri,
-	$_sessionIsmi,
-	$_girisYapti;
+	private $_veri;
+	private $_sessionIsmi;
+	private $_girisYapti;
 
 	public function __construct($kullanici = null){
 		$this->_db = DB::baglan();
@@ -59,10 +59,8 @@ class Kullanici{
 		return (!empty($this->_veri)) ? true : false;
 	}
 
-
 	public function girisYapti() {
 		return $this->_girisYapti;
 	}
-
 }
 ?>

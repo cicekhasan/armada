@@ -12,23 +12,23 @@ if (Input::varsa()) {
         'max'       => 20,
         'benzersiz' => 'uyeler'
       ),
-      'parola' => array(
-        'zorunlu' => true,
-        'min'     => 6
+      'parola'        => array(
+        'zorunlu'   => true,
+        'min'       => 6
       ),
       'parola_tekrar' => array(
-        'zorunlu' => true,
-        'eslesme' => 'parola'
+        'zorunlu'   => true,
+        'min'       => 6,
+        'eslesme'   => 'parola'
       ),
-      'isim' => array(
-        'zorunlu' => true,
-        'min'     => 3,
-        'max'     => 50
+      'isim'          => array(
+        'zorunlu'   => true,
+        'min'       => 3,
+        'max'       => 50
       )
     ));
 
     if ($onaylama->tamam()) {
-      echo "Onaylandı!";
       $kullanici = new Kullanici();
       $kullanici_adi = Input::getir('kullanici_adi');
       $salt          = Hash::salt(32);
@@ -51,7 +51,6 @@ if (Input::varsa()) {
         //header('Location: index.php');
       Yonlendir::yon('index.php');
 
-
     }else{
       foreach ($onaylama->hatalar() as $hata) {
         echo $hata, '<br />';
@@ -60,7 +59,6 @@ if (Input::varsa()) {
   }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -80,28 +78,28 @@ if (Input::varsa()) {
       <li><a href="sifre_degistir.php">Şifre Değiştir</a></li>
       <li><a href="giris.php">Giriş</a></li>
       <li><a href="cikis.php">Çıkış</a></li>
-  </ul> 
-</small>   
-<p> <?php    echo "ÜYE OL SAYFASI <br />"; ?> </p>
-<form action="" method="post">
-  <div class="alan">
-    <label for="kullanici_adi">Kullanıcı Adı</label>
-    <input type="text" name="kullanici_adi" id="kullanici_adi" value="<?php echo filtrele(Input::getir('kullanici_adi')); ?>" autocomplate="off">
-  </div>
-  <div class="alan">
-    <label for="parola">Parola</label>
-    <input type="password" name="parola" id="parola">
-  </div>
-  <div class="alan">
-    <label for="parola_tekrar">Parola Tekrarı</label>
-    <input type="password" name="parola_tekrar" id="parola_tekrar">
-  </div>
-  <div class="alan">
-    <label for="isim">Adı ve Soyadı</label>
-    <input type="hidden" name="token" value="<?php echo Token::olustur(); ?>">
-    <input type="text" name="isim" id="isim" value="<?php echo filtrele(Input::getir('isim')); ?>">
-  </div>
-  <input type="submit" value="Üye Ol">
-</form>
+    </ul> 
+  </small>   
+  <p> <?php echo "ÜYE OL SAYFASI <br />"; ?> </p>
+  <form action="" method="post">
+    <div class="alan">
+      <label for="kullanici_adi">Kullanıcı Adı</label>
+      <input type="text" name="kullanici_adi" id="kullanici_adi" value="<?php echo filtrele(Input::getir('kullanici_adi')); ?>" autocomplate="off">
+    </div>
+    <div class="alan">
+      <label for="parola">Parola</label>
+      <input type="password" name="parola" id="parola">
+    </div>
+    <div class="alan">
+      <label for="parola_tekrar">Parola Tekrarı</label>
+      <input type="password" name="parola_tekrar" id="parola_tekrar">
+    </div>
+    <div class="alan">
+      <label for="isim">Adı ve Soyadı</label>
+      <input type="hidden" name="token" value="<?php echo Token::olustur(); ?>">
+      <input type="text" name="isim" id="isim" value="<?php echo filtrele(Input::getir('isim')); ?>">
+    </div>
+    <input type="submit" value="Üye Ol">
+  </form>
 </body>
 </html>
